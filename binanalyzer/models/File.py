@@ -19,7 +19,9 @@ class File:
         except Exception as e:
             print("Error uploading to s3 ", e)
             return False
-        return True
+        data = json.loads(self.process_file())
+        ordered_data = self.get_ordered_data(data)
+        return ordered_data
 
     def process_file(self):
         args = {'service': 'analysis', 'file': self.file.filename}
@@ -31,3 +33,13 @@ class File:
         )
         data = response['Payload'].read().decode()
         return data
+
+    def get_ordered_data(self, data):
+        info = {}
+        index = 0;
+        for item in reversed(sorted(data['message'], key=len)):
+            if index > 200:
+                continue
+            info[item] = "".join([" %02x" % ord(c) for c in item])
+            index += 1
+        return info

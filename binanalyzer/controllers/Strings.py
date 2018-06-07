@@ -21,18 +21,10 @@ def file_uploader():
             return "Invalid file"
         if file and allowed_file(file.filename):
             file_obj = File(file)
-            if file_obj.upload():
-                data = json.loads(file_obj.process_file())
-                if data:
-                    info = {}
-                    index = 0;
-                    for item in reversed(sorted(data['message'],key=len)):
-                        if index > 200:
-                            continue
-                        info[item] = "".join([" %02x" % ord(c) for c in item])
-                        index += 1
-                    return render_template("analyzer/analysis.html", result = info)
-                else:
-                    return "error"
+            data = file_obj.upload()
+            if data:
+                return render_template("analyzer/analysis.html", result = data)
+            else:
+                return "error"
     return render_template('uploader/index.html')
 
