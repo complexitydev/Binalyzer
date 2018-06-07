@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+        <title>Binalyzer Uploader</title>
+    </head>
+    <body>
+        <header>
+            <h1><a href="/">binalyzer.io Uploader</a></h1>
+        </header>
+        <form action="/" method="post" enctype="multipart/form-data" id="upload_form">
+            <input id="upload_button" type="file" name="upload">
+            <div id="dropbox">
+                <span class="message">Click here to upload a file. <br/><i>(these files are not distributed)</i></span>
+            </div>
+        </form>
+    </body>
+</html>
