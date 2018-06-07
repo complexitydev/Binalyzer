@@ -3,7 +3,7 @@ from flask import render_template, request
 from binanalyzer.models.File import File
 import json
 
-ALLOWED_EXTENSIONS = ['doc', 'docx', 'exe']
+ALLOWED_EXTENSIONS = ['doc', 'docx', 'exe', 'bin']
 
 
 def allowed_file(filename):
