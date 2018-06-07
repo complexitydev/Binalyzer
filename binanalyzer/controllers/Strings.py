@@ -1,7 +1,7 @@
-from binanalyzer import app
 from flask import render_template, request
+
+from binanalyzer import app
 from binanalyzer.models.File import File
-import json
 
 ALLOWED_EXTENSIONS = ['doc', 'docx', 'exe', 'bin']
 
@@ -23,8 +23,7 @@ def file_uploader():
             file_obj = File(file)
             data = file_obj.upload()
             if data:
-                return render_template("analyzer/analysis.html", result = data)
+                return render_template("analyzer/analysis.html", result=data)
             else:
                 return "error"
     return render_template('uploader/index.html')
-

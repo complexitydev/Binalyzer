@@ -2,6 +2,7 @@
 import boto3
 import json
 
+
 class File:
     file = None
     s3 = None
@@ -34,9 +35,10 @@ class File:
         data = response['Payload'].read().decode()
         return data
 
-    def get_ordered_data(self, data):
+    @staticmethod
+    def get_ordered_data(data):
         info = {}
-        index = 0;
+        index = 0
         for item in reversed(sorted(data['message'], key=len)):
             if index > 200:
                 continue
