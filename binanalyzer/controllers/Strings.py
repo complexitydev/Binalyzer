@@ -17,6 +17,7 @@ def file_uploader():
         if "upload" not in request.files:
             return
         file = request.files["upload"]
+        #should be moved to model to validate
         if file.filename == "":
             return "Invalid file"
         if file and allowed_file(file.filename):
